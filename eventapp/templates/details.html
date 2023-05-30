@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="container" style="background-color:white; margin-left:380px;width:560px;">
+    
+    <img src={{eve.image.url}} style="height: 320px;margin-left:150px;">
+    <div style="margin-left:180px;">
+    <h5> {{eve.name}}</h5>
+    <h5> {{eve.amount}}</h5>
+    <h5>${{eve.description}}</h5>
+    <a href="{% url 'eventitem' eve.id user.id %}" class="btn btn-primary">Add to Event</a>
+</div>
+    </div>
+{% endblock %}

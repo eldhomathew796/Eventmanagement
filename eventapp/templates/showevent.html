@@ -1,0 +1,49 @@
+{% extends 'baseadmin.html' %}
+{% load static %}
+{% block body %}
+<table class="table text-center ">
+<h2 align="center">Show Event Details</h2>
+<tr>
+    <th>Event Name</th>
+    <th>Amount</th>
+    <th>Description</th>
+    <th>Image</th>
+    <th>Event Category</th>
+    <th>Action</th>
+</tr>
+{% for p in eve %}
+<tr>
+    <td>{{p.name}}</td>
+    <td>{{p.amount}}</td>
+    <td>{{p.description}}</td>
+    {% if p.image == '/static/image/default.png' %}
+    <td>
+        <img width="50px"  src="{% static 'image/default.png' %}" class="w-25">
+    </td>
+    {% else %}
+    <td>
+        <img width="50px"  src="{{ p.image.url }}" class="w-25">
+    </td>
+    {% endif %}    
+    <td>{{p.category.categoryname}}</td>
+    
+    <td><a href="{% url 'editdetails' p.id %}" class="btn btn-warning">Edit</a>
+        <a href="{% url 'deletedetails' p.id %}" onclick="checker()" class="btn btn-danger" >Delete</a></td>
+        
+    </tr>
+    {% endfor %}
+</table>
+    <script>
+        function checker(){
+            var result=confirm('Are you sure want to Delete??');
+            if (result == false) {
+                event.preventDefault();
+            }
+        }
+    </script>
+
+
+
+
+
+{% endblock %}

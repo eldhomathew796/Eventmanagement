@@ -1,0 +1,75 @@
+{% extends 'baseadmin.html' %}
+{% block body %}
+{% load static %}
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+    <table border='0' width='480px' cellpadding='0' cellspacing='0' align='center' >
+        <center><tr>
+           <td><h2><b style="font-family: Times New Roman, Times, serif; ">Edit Events </b></h2></td>
+        </tr><center>
+    <table border='0' width='500' align='center' >
+        
+        <tr> <td>&nbsp;</td> </tr>
+        <tr>
+            <td align='center'><b>Event Name:</b></td>
+            <td><input type='text' name='name' value="{{eve.name}}"></td>
+        </tr>
+        <tr> <td>&nbsp;</td> </tr>
+        <tr>
+            <td align='center'><b>Amount:</b></td>
+            <td><input type='text' name='amount' value="{{eve.amount}}"></td> 
+        </tr>
+        <tr> <td>&nbsp;</td> </tr>
+        <tr>
+            <td align='center'><b>Description:</b></td>
+            <td><input type='text' name='description' value="{{eve.description}}"></td> 
+        </tr>
+        <tr> <td>&nbsp;</td> </tr>
+        <tr>
+            {% if eve.image == '/static/image/default.jpg' %}
+                <td>
+                    <img src="{% static 'image/default.jpg' %}" class="w-25">
+                </td>
+                {% else %}
+                <td>
+                    <img src="{{ eve.image.url }}" class="w-25">
+                </td>
+                {% endif %}
+        </tr>
+        <td><input type="file" name="file" class="form-control mt-3" accept="image/*" ></td>
+        <tr> <td>&nbsp;</td> </tr>
+       
+        <tr><td align='center'><b>Category:</b></td><td>
+          
+            <select name="sel">
+                <!-- <option value="">Select category</option><br> -->
+                {% for c in cat %}
+                {% if c.id == eve.category.id %}
+                    <option value="{{ c.id }}" selected>{{ c.categoryname }}</option> 
+               
+               {% else %}
+               <option value="{{ c.id }}" >{{ c.categoryname }}</option> 
+               {% endif %}
+                {% endfor %}
+                </select></td>
+        </tr>
+       
+        <tr> <td>&nbsp;</td> </tr>
+        
+        <table border='0' cellpadding='0' cellspacing='0' width='480px' align='center'>
+        <tr>
+            <td align='center'><input type='submit' button onclick="javascript:alert('Sir,Your updation completed,Thank you');" class="btn btn-sm btn-info" name='REGISTER' value="Update"></td>
+        </tr>
+
+        
+
+
+        
+        </table>
+        
+        </table>
+        
+    </table>
+    
+    </form>
+{% endblock %}
